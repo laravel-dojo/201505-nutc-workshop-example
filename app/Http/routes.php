@@ -22,27 +22,27 @@ Route::pattern('id', '[0-9]+');
 
 Route::get('/', ['as' => 'home.index', function()
 {
-    return 'home.index';
+    return view('index');
 }]);
 
 Route::get('about', ['as' => 'about.index', function()
 {
-    return 'about.index';
+    return view('about');
 }]);
 
 Route::get('posts', ['as' => 'posts.index', function()
 {
-    return 'posts.index';
+    return view('index');
 }]);
 
 Route::get('random', ['as' => 'posts.random', function()
 {
-    return 'posts.random';
+    return view('post');
 }]);
 
 Route::get('posts/{id}', ['as' => 'posts.show', function($id)
 {
-    return 'posts.show: '.$id;
+    return view('post');
 }]);
 
 Route::get('posts/create', ['as' => 'posts.create', function()
@@ -77,7 +77,7 @@ Route::post('posts/{id}/comment', ['as' => 'posts.comment', function($id)
 
 Route::get('contact', ['as' => 'contacts.create', function()
 {
-	return 'contact.create';
+	return view('contact');
 }]);
 
 Route::post('contact', ['as' => 'contacts.store', function()
