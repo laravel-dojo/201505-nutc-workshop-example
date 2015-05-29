@@ -141,6 +141,7 @@ return [
 		 */
 		'Laracasts\Generators\GeneratorsServiceProvider',
 		'Gvb\Whoops\ServiceProvider',
+		'Barryvdh\Debugbar\ServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -198,6 +199,11 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
+
+		/*
+		 * Package Aliases
+		 */
+		'Debugbar' => 'Barryvdh\Debugbar\Facade',
 
 	],
 
