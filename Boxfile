@@ -1,0 +1,46 @@
+global:
+  env:
+    - APP_ENV: production
+    - APP_DEBUG: false
+    - APP_KEY: nJkEXjfUfmICPtPoIcJWJlinNAKBLVZK
+    - DB_HOST: 'MAP:DATABASE1_HOST'
+    - DB_DATABASE: 'MAP:DATABASE1_NAME'
+    - DB_USERNAME: 'MAP:DATABASE1_USER'
+    - DB_PASSWORD: 'MAP:DATABASE1_PASS'
+    - CACHE_DRIVER: file
+
+build:
+  exec:
+    - 'composer install --no-interaction --prefer-source'
+  after_exec:
+    - 'composer dump-autoload --optimize'
+  lib_dirs:
+    - vendor
+  reuse_libs: true
+
+web1:
+  type: php
+  php_extensions:
+    - json
+    - mbstring
+    - mcrypt
+    - tokenizer
+    - pdo_mysql
+    - xcache
+  httpd_document_root: public
+  network_dirs:
+    - storage/framework
+    - storage/app
+  nonpersistent_writable_dirs:
+    - storage/cache
+  log_watch:
+    larvel[error]: 'storage/logs/laravel.log'
+  before_deploy:
+    - 'php artisan migrate --no-interaction --force'
+
+database1:
+  type: mysql
+  version: 5.6
+
+storage1:
+  type: nfs

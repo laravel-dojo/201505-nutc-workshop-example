@@ -1,0 +1,8 @@
+# On the first push to an app, the Boxfile.install is merged into
+# the Boxfile. Settings and configs defined here only apply on the
+# first deploy to an app.
+
+web1:
+  before_deploy:
+    - "mkdir storage/framework/views"
+    - "php artisan db:seed --no-interaction --force"
