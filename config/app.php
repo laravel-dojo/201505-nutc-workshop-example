@@ -140,6 +140,7 @@ return [
 		 * Package Service Providers
 		 */
 		'Laracasts\Generators\GeneratorsServiceProvider',
+		'Gvb\Whoops\ServiceProvider',
 
 		/*
 		 * Application Service Providers...
