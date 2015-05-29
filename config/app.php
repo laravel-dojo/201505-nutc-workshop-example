@@ -142,6 +142,7 @@ return [
 		'Laracasts\Generators\GeneratorsServiceProvider',
 		'Gvb\Whoops\ServiceProvider',
 		'Barryvdh\Debugbar\ServiceProvider',
+		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 
 		/*
 		 * Application Service Providers...
