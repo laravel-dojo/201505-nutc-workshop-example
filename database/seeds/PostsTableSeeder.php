@@ -8,11 +8,13 @@ class PostsTableSeeder extends Seeder
     {
 		DB::table('posts')->truncate();
 
+		$faker = Faker\Factory::create('zh_TW');
+
         foreach(range(1, 10) as $number) {
         	App\Post::create([
-        		'title' => '測試假文章'.$number,
-        		'sub_title' => '這是副標題…',
-        		'content' => '這是假的文章內容',
+        		'title' => $faker->sentence,
+        		'sub_title' => $faker->sentence,
+        		'content' => $faker->paragraph,
         		'is_hot' => rand(0, 1),
         		'created_at' => Carbon\Carbon::now()->addDays($number),
 				'updated_at' => Carbon\Carbon::now()->addDays($number),

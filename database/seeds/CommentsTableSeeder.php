@@ -8,11 +8,13 @@ class CommentsTableSeeder extends Seeder
     {
     	DB::table('comments')->truncate();
 
+		$faker = Faker\Factory::create('zh_TW');
+
         foreach(range(1, 10) as $number) {
         	App\Comment::create([
-        		'name' => '測試假人'.$number,
-        		'email' => 'tester@test.com',
-        		'content' => '這是假的回覆內容',
+        		'name' => $faker->name,
+        		'email' => $faker->email,
+        		'content' => $faker->paragraph,
         		'post_id' => rand(1, 10),
         		'created_at' => Carbon\Carbon::now()->addDays($number),
 				'updated_at' => Carbon\Carbon::now()->addDays($number),

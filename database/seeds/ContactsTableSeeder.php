@@ -8,11 +8,13 @@ class ContactsTableSeeder extends Seeder
     {
     	DB::table('contacts')->truncate();
 
+    	$faker = Faker\Factory::create('zh_TW');
+
         foreach(range(1, 10) as $number) {
         	App\Contact::create([
-        		'name' => '測試假人'.$number,
-        		'email' => 'tester@test.com',
-        		'message' => '這是假的訊息內容',
+        		'name' => $faker->name,
+        		'email' => $faker->email,
+        		'message' => $faker->paragraph,
         		'created_at' => Carbon\Carbon::now()->addDays($number),
 				'updated_at' => Carbon\Carbon::now()->addDays($number),
         	]);
