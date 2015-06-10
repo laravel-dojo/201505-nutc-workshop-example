@@ -11,4 +11,9 @@ class Post extends Model {
 		'is_hot',
 	];
 
+	public function comments()
+	{
+		return $this->hasMany('App\Comment');
+	}
+
 }
