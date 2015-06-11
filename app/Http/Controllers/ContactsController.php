@@ -1,9 +1,7 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
+use App\Http\Requests\ContactStoreRequest;
 use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
 
 class ContactsController extends Controller {
 
@@ -22,9 +20,9 @@ class ContactsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(ContactStoreRequest $request)
 	{
-		$contact = \App\Contact::create(\Input::all());
+		$contact = \App\Contact::create($request->all());
 
 		return redirect()->route('contacts.create');
 	}

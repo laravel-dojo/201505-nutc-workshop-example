@@ -23,27 +23,35 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+            @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>錯誤！</strong> 請檢查你填寫的資料
+            </div>
+            @endif
+
             <p>請依以下格式輸入</p>
             {!! Form::open(['route' => 'posts.store', 'method' => 'POST', 'id' => 'contactForm', 'name' => 'sentMessage', 'novalidate']) !!}
                 <div class="row control-group">
                     <div class="form-group col-xs-12 floating-label-form-group controls">
                         {!! Form::label('title', '文章標題') !!}
                         {!! Form::text('title', null, ['id' => 'title', 'class' => 'form-control', 'placeholder' => '文章標題', 'data-validation-required-message' => '請輸入文章標題', 'required']) !!}
-                        <p class="help-block text-danger"></p>
+                        <p class="help-block text-danger">{{ $errors->first('title') }}</p>
                     </div>
                 </div>
                 <div class="row control-group">
                     <div class="form-group col-xs-12 floating-label-form-group controls">
                         {!! Form::label('sub_title', '文章副標題') !!}
                         {!! Form::text('sub_title', null, ['id' => 'sub_title', 'class' => 'form-control', 'placeholder' => '文章副標題', 'data-validation-required-message' => '請輸入文章副標題', 'required']) !!}
-                        <p class="help-block text-danger"></p>
+                        <p class="help-block text-danger">{{ $errors->first('sub_title') }}</p>
                     </div>
                 </div>
                 <div class="row control-group">
                     <div class="form-group col-xs-12 floating-label-form-group controls">
                         {!! Form::label('content', '文章內容') !!}
                         {!! Form::textarea('content', null, ['id' => 'content', 'row' => 5, 'class' => 'form-control', 'placeholder' => '文章內容', 'data-validation-required-message' => '請輸入文章內容', 'required']) !!}
-                        <p class="help-block text-danger"></p>
+                        <p class="help-block text-danger">{{ $errors->first('content') }}</p>
                     </div>
                 </div>
                 <div class="row control-group">
@@ -52,7 +60,7 @@
                         {!! Form::label('is_hot', '熱門文章') !!}
                         是：{!! Form::radio('is_hot', 1, true, ['id' => 'is_hot']) !!}
                         否：{!! Form::radio('is_hot', 0, false, ['id' => 'is_hot']) !!}
-                        <p class="help-block text-danger"></p>
+                        <p class="help-block text-danger">{{ $errors->first('is_hot') }}</p>
                     </div>
                 </div>
                 <br>

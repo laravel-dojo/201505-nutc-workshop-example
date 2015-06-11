@@ -1,9 +1,8 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
+use App\Http\Requests\PostStoreRequest;
+use App\Http\Requests\CommentStoreRequest;
 use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
 
 class PostsController extends Controller {
 
@@ -39,9 +38,9 @@ class PostsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(PostStoreRequest $request)
 	{
-		$post = \App\Post::create(\Input::all());
+		$post = \App\Post::create($request->all());
 
 		return redirect()->route('posts.show', $post->id);
 	}
@@ -82,11 +81,11 @@ class PostsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, PostStoreRequest $request)
 	{
 		$post = \App\Post::find($id);
 
-		$post->update(\Input::all());
+		$post->update($request->all());
 
 		return redirect()->route('posts.show', $post->id);
 	}
@@ -113,10 +112,10 @@ class PostsController extends Controller {
 	    return view('posts.show', $data);
 	}
 
-	public function comment($id)
+	public function comment($id, CommentStoreRequest $request)
 	{
 		$post = \App\Post::find($id);
-		$comment = \App\Comment::create(\Input::all());
+		$comment = \App\Comment::create($request->all());
 
 		$post->comments()->save($comment);
 

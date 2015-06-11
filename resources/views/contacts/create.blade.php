@@ -23,27 +23,35 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        
+            @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>錯誤！</strong> 請檢查你填寫的資料
+            </div>
+            @endif
+
             <p>請填寫以下表單，我們會儘快回覆您的！</p>
             {!! Form::open(['route' => 'contacts.store', 'method' => 'POST', 'id' => 'contactForm', 'name' => 'sentMessage', 'novalidate']) !!}
                 <div class="row control-group">
                     <div class="form-group col-xs-12 floating-label-form-group controls">
                         {!! Form::label('name', '姓名') !!}
                         {!! Form::text('name', null, ['id' => 'name', 'class' => 'form-control', 'placeholder' => '姓名', 'data-validation-required-message' => '請輸入姓名', 'required']) !!}
-                        <p class="help-block text-danger"></p>
+                        <p class="help-block text-danger">{{ $errors->first('name') }}</p>
                     </div>
                 </div>
                 <div class="row control-group">
                     <div class="form-group col-xs-12 floating-label-form-group controls">
                         {!! Form::label('email', '電子郵件') !!}
                         {!! Form::email('email', null, ['id' => 'email', 'class' => 'form-control', 'placeholder' => '電子郵件', 'data-validation-required-message' => '請輸入電子郵件', 'required']) !!}
-                        <p class="help-block text-danger"></p>
+                        <p class="help-block text-danger">{{ $errors->first('email') }}</p>
                     </div>
                 </div>
                 <div class="row control-group">
                     <div class="form-group col-xs-12 floating-label-form-group controls">
                         {!! Form::label('message', '想說的話') !!}
                         {!! Form::textarea('message', null, ['id' => 'message', 'row' => 5, 'class' => 'form-control', 'placeholder' => '想說的話', 'data-validation-required-message' => '請輸入想說的話', 'required']) !!}
-                        <p class="help-block text-danger"></p>
+                        <p class="help-block text-danger">{{ $errors->first('message') }}</p>
                     </div>
                 </div>
                 <br>

@@ -36,16 +36,27 @@
                 <!-- Comments Form -->
                 <div class="well">
                     <h4>留下您的想法：</h4>
+
+                    @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>錯誤！</strong> 請檢查你填寫的資料
+                    </div>
+                    @endif
+
                     {!! Form::open(['route' => ['posts.comment', $post->id], 'method' => 'POST', 'role' => 'form']) !!}
                         <div class="form-group">
                             {!! Form::label('name', '名字：') !!}
                             {!! Form::text('name', null, ['class' => 'form-control']) !!}
+                            <p class="help-block text-danger">{{ $errors->first('name') }}</p>
 
                             {!! Form::label('email', 'Email：') !!}
                             {!! Form::email('email', null, ['class' => 'form-control']) !!}
+                            <p class="help-block text-danger">{{ $errors->first('email') }}</p>
 
                             {!! Form::label('content', '留言：') !!}
                             {!! Form::textarea('content', null, ['row' => 3, 'class' => 'form-control']) !!}
+                            <p class="help-block text-danger">{{ $errors->first('content') }}</p>
                         </div>
                         {!! Form::submit('送出', ['class' => 'btn btn-primary']) !!}
                     {!! Form::close() !!}
