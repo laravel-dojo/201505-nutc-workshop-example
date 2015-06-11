@@ -24,17 +24,17 @@
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             
-            @foreach(range(1, 5) as $number)
+            @foreach($posts as $post)
             <div class="post-preview">
-                <a href="{{ route('posts.show', $number) }}">
+                <a href="{{ route('posts.show', $post->id) }}">
                     <h2 class="post-title">
-                        文章主標題 - {{ $number }}
+                        {{ $post->title }}
                     </h2>
                     <h3 class="post-subtitle">
-                        文章副標題
+                        {{ $post->sub_title }}
                     </h3>
                 </a>
-                <p class="post-meta">發表於 {{ date('Y-m-d')}}</p>
+                <p class="post-meta">發表於 {{ $post->created_at->toDateString() }}</p>
             </div>
             <hr>
             @endforeach

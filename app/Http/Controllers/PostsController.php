@@ -14,7 +14,12 @@ class PostsController extends Controller {
 	 */
 	public function index()
 	{
-		$data = ['post_type' => '文章總覽'];
+		$posts = \App\Post::orderBy('created_at', 'desc')
+						  ->get();
+
+		$post_type = '文章總覽';
+
+		$data = compact('posts', 'post_type');
 
     	return view('posts.index', $data);
 	}
@@ -47,12 +52,9 @@ class PostsController extends Controller {
 	 */
 	public function show($id)
 	{
-	 	$data = [
-	        'post' => [
-	            'title' => '文章內容 '.$id,
-	            'sub_title' => '文章副標題'
-	        ]
-	    ];
+		$post = \App\Post::find($id);
+
+	 	$data = compact('post');
 
 	    return view('posts.show', $data);
 	}
@@ -94,24 +96,10 @@ class PostsController extends Controller {
 
 	public function random()
 	{
-		$titles = [
-	        '感謝上師，讚嘆師父！',
-	        '每個人都能出來！',
-	        '會走到什麼地方？'
-	    ];
+		$id = rand(1, 10);
+		$post = \App\Post::find($id);
 
-	    $sub_titles = [
-	        '一雙眼和一雙眼短暫的交會擦身而過',
-	        '人們也就三三五五的散去',
-	        '樹要樹皮人要麵皮'
-	    ];
-
-	    $post = [
-	        'title' => $titles[rand(0, 2)],
-	        'sub_title' => $sub_titles[rand(0, 2)],
-	    ];
-
-	    $data = compact('post');
+	 	$data = compact('post');
 
 	    return view('posts.show', $data);
 	}
@@ -120,5 +108,5 @@ class PostsController extends Controller {
 	{
 		return 'posts.comment: '.$id;
 	}
-	
+
 }

@@ -30,7 +30,13 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		$data = ['post_type' => '熱門文章'];
+		$posts = \App\Post::where('is_hot', true)
+						  ->orderBy('created_at', 'desc')
+						  ->get();
+
+	    $post_type = '熱門文章';
+
+		$data = compact('posts', 'post_type');
 
     	return view('posts.index', $data);
 	}
