@@ -32,7 +32,7 @@ class HomeController extends Controller {
 	{
 		$posts = \App\Post::where('is_hot', true)
 						  ->orderBy('created_at', 'desc')
-						  ->get();
+						  ->paginate(5);
 
 	    $post_type = '熱門文章';
 

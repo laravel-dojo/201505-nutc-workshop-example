@@ -15,7 +15,7 @@ class PostsController extends Controller {
 	public function index()
 	{
 		$posts = \App\Post::orderBy('created_at', 'desc')
-						  ->get();
+						  ->paginate(10);
 
 		$post_type = '文章總覽';
 
