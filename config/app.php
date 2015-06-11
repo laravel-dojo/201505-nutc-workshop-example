@@ -143,6 +143,7 @@ return [
 		'Gvb\Whoops\ServiceProvider',
 		'Barryvdh\Debugbar\ServiceProvider',
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+		'Collective\Html\HtmlServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -205,6 +206,8 @@ return [
 		 * Package Aliases
 		 */
 		'Debugbar' => 'Barryvdh\Debugbar\Facade',
+		'Form' => 'Collective\Html\FormFacade',
+      	'Html' => 'Collective\Html\HtmlFacade',
 
 	],
 

@@ -24,25 +24,25 @@
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <p>請填寫以下表單，我們會儘快回覆您的！</p>
-            <form name="sentMessage" id="contactForm" novalidate>
+            {!! Form::open(['route' => 'contacts.store', 'method' => 'POST', 'id' => 'contactForm', 'name' => 'sentMessage', 'novalidate']) !!}
                 <div class="row control-group">
                     <div class="form-group col-xs-12 floating-label-form-group controls">
-                        <label>姓名</label>
-                        <input type="text" class="form-control" placeholder="姓名" id="name" required data-validation-required-message="請輸入您的姓名">
+                        {!! Form::label('name', '姓名') !!}
+                        {!! Form::text('name', null, ['id' => 'name', 'class' => 'form-control', 'placeholder' => '姓名', 'data-validation-required-message' => '請輸入姓名', 'required']) !!}
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>
                 <div class="row control-group">
                     <div class="form-group col-xs-12 floating-label-form-group controls">
-                        <label>電子郵件</label>
-                        <input type="email" class="form-control" placeholder="電子郵件" id="email" required data-validation-required-message="請輸入您的電子郵件">
+                        {!! Form::label('email', '電子郵件') !!}
+                        {!! Form::email('email', null, ['id' => 'email', 'class' => 'form-control', 'placeholder' => '電子郵件', 'data-validation-required-message' => '請輸入電子郵件', 'required']) !!}
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>
                 <div class="row control-group">
                     <div class="form-group col-xs-12 floating-label-form-group controls">
-                        <label>想說的話</label>
-                        <textarea rows="5" class="form-control" placeholder="想說的話" id="message" required data-validation-required-message="請輸入想說的話"></textarea>
+                        {!! Form::label('message', '想說的話') !!}
+                        {!! Form::textarea('message', null, ['id' => 'message', 'row' => 5, 'class' => 'form-control', 'placeholder' => '想說的話', 'data-validation-required-message' => '請輸入想說的話', 'required']) !!}
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>

@@ -24,6 +24,10 @@
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             
+            <div class="text-right" style="margin-bottom: 20px;">
+                <a href="{{ route('posts.create') }}" class="btn btn-primary">新增</a>
+            </div>
+
             @foreach($posts as $post)
             <div class="post-preview">
                 <a href="{{ route('posts.show', $post->id) }}">
@@ -35,6 +39,12 @@
                     </h3>
                 </a>
                 <p class="post-meta">發表於 {{ $post->created_at->toDateString() }}</p>
+                
+                {!! Form::open(['route' => ['posts.destroy', $post->id], 'method' => 'DELETE']) !!}
+                <p class="text-right">
+                    {!! Form::submit('刪除', ['class' => 'btn btn-danger']) !!}
+                </p>
+                {!! Form::close() !!}
             </div>
             <hr>
             @endforeach

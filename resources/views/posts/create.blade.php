@@ -24,18 +24,34 @@
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <p>請依以下格式輸入</p>
-            <form name="sentMessage" id="contactForm" novalidate>
+            {!! Form::open(['route' => 'posts.store', 'method' => 'POST', 'id' => 'contactForm', 'name' => 'sentMessage', 'novalidate']) !!}
                 <div class="row control-group">
                     <div class="form-group col-xs-12 floating-label-form-group controls">
-                        <label>文章標題</label>
-                        <input type="text" class="form-control" placeholder="文章標題" id="name" required data-validation-required-message="請輸入文章標題">
+                        {!! Form::label('title', '文章標題') !!}
+                        {!! Form::text('title', null, ['id' => 'title', 'class' => 'form-control', 'placeholder' => '文章標題', 'data-validation-required-message' => '請輸入文章標題', 'required']) !!}
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>
                 <div class="row control-group">
                     <div class="form-group col-xs-12 floating-label-form-group controls">
-                        <label>文章內容</label>
-                        <textarea rows="5" class="form-control" placeholder="文章內容" id="message" required data-validation-required-message="請輸入文章內容"></textarea>
+                        {!! Form::label('sub_title', '文章副標題') !!}
+                        {!! Form::text('sub_title', null, ['id' => 'sub_title', 'class' => 'form-control', 'placeholder' => '文章副標題', 'data-validation-required-message' => '請輸入文章副標題', 'required']) !!}
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        {!! Form::label('content', '文章內容') !!}
+                        {!! Form::textarea('content', null, ['id' => 'content', 'row' => 5, 'class' => 'form-control', 'placeholder' => '文章內容', 'data-validation-required-message' => '請輸入文章內容', 'required']) !!}
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <div class="row control-group">
+                    <div class="form-group col-xs-12 floating-label-form-group controls">
+                        <p style="font-size: 1.5em; color: #555; margin-bottom: 0">熱門文章？</p>
+                        {!! Form::label('is_hot', '熱門文章') !!}
+                        是：{!! Form::radio('is_hot', 1, true, ['id' => 'is_hot']) !!}
+                        否：{!! Form::radio('is_hot', 0, false, ['id' => 'is_hot']) !!}
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>
@@ -43,10 +59,10 @@
                 <div id="success"></div>
                 <div class="row">
                     <div class="form-group col-xs-12">
-                        <button type="submit" class="btn btn-default">送出</button>
+                        {!! Form::submit('送出', ['class' => 'btn btn-default']) !!}
                     </div>
                 </div>
-            </form>
+            {!! Form::close() !!}
         </div>
     </div>
 </div>
