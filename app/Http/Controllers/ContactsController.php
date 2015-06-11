@@ -24,7 +24,7 @@ class ContactsController extends Controller {
 	{
 		$contact = \App\Contact::create($request->all());
 
-		return redirect()->route('contacts.create');
+		return redirect()->route('contacts.create')->with('success', '謝謝您的留言');
 	}
 
 }

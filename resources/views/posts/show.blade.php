@@ -25,6 +25,8 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 
+                @include('layouts.partials.notification')
+                
                 <div class="text-right" style="margin-bottom: 20px;">
                     <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary">編輯</a>
                 </div>

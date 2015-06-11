@@ -24,12 +24,7 @@
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         
-            @if ($errors->any())
-            <div class="alert alert-danger alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <strong>錯誤！</strong> 請檢查你填寫的資料
-            </div>
-            @endif
+            @include('layouts.partials.notification')
 
             <p>請填寫以下表單，我們會儘快回覆您的！</p>
             {!! Form::open(['route' => 'contacts.store', 'method' => 'POST', 'id' => 'contactForm', 'name' => 'sentMessage', 'novalidate']) !!}

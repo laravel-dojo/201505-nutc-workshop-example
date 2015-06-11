@@ -42,7 +42,7 @@ class PostsController extends Controller {
 	{
 		$post = \App\Post::create($request->all());
 
-		return redirect()->route('posts.show', $post->id);
+		return redirect()->route('posts.show', $post->id)->with('success', '新增文章完成');
 	}
 
 	/**
@@ -54,6 +54,10 @@ class PostsController extends Controller {
 	public function show($id)
 	{
 		$post = \App\Post::find($id);
+
+		if (is_null($post)) {
+			return redirect()->back()->with('message', '找不到該文章');
+		}
 
 	 	$data = compact('post');
 
@@ -70,6 +74,10 @@ class PostsController extends Controller {
 	{
 		$post = \App\Post::find($id);
 
+		if (is_null($post)) {
+			return redirect()->back()->with('message', '找不到該文章');
+		}
+
 		$data = compact('post');
 
     	return view('posts.edit', $data);
@@ -83,11 +91,11 @@ class PostsController extends Controller {
 	 */
 	public function update($id, PostStoreRequest $request)
 	{
-		$post = \App\Post::find($id);
+		$post = \App\Post::findOrFail($id);
 
 		$post->update($request->all());
 
-		return redirect()->route('posts.show', $post->id);
+		return redirect()->route('posts.show', $post->id)->with('success', '文章更新完成');
 	}
 
 	/**
@@ -100,12 +108,16 @@ class PostsController extends Controller {
 	{
 		\App\Post::destroy($id);
 
-		return redirect()->route('posts.index');
+		return redirect()->route('posts.index')->with('success', '文章刪除完成');
 	}
 
 	public function random()
 	{
 		$post = \App\Post::all()->random();
+
+		if (is_null($post)) {
+			return redirect()->back()->with('message', '目前沒有文章');
+		}
 
 	 	$data = compact('post');
 
@@ -114,12 +126,12 @@ class PostsController extends Controller {
 
 	public function comment($id, CommentStoreRequest $request)
 	{
-		$post = \App\Post::find($id);
+		$post = \App\Post::findOrFail($id);
 		$comment = \App\Comment::create($request->all());
 
 		$post->comments()->save($comment);
 
-		return redirect()->route('posts.show', $post->id);
+		return redirect()->route('posts.show', $post->id)->with('success', '回覆留言完成');
 	}
 
 }
