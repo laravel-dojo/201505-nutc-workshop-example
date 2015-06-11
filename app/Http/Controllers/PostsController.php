@@ -106,8 +106,7 @@ class PostsController extends Controller {
 
 	public function random()
 	{
-		$id = rand(1, 10);
-		$post = \App\Post::find($id);
+		$post = \App\Post::all()->random();
 
 	 	$data = compact('post');
 
