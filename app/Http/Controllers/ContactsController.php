@@ -24,7 +24,9 @@ class ContactsController extends Controller {
 	 */
 	public function store()
 	{
-		return 'contact.store';
+		$contact = \App\Contact::create(\Input::all());
+
+		return redirect()->route('contacts.create');
 	}
 
 }

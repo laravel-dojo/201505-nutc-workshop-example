@@ -41,7 +41,9 @@ class PostsController extends Controller {
 	 */
 	public function store()
 	{
-		return 'posts.store';
+		$post = \App\Post::create(\Input::all());
+
+		return redirect()->route('posts.show', $post->id);
 	}
 
 	/**
@@ -82,7 +84,11 @@ class PostsController extends Controller {
 	 */
 	public function update($id)
 	{
-		return 'posts.update: '.$id;
+		$post = \App\Post::find($id);
+
+		$post->update(\Input::all());
+
+		return redirect()->route('posts.show', $post->id);
 	}
 
 	/**
@@ -93,7 +99,9 @@ class PostsController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		return 'posts.destroy: '.$id;
+		\App\Post::destroy($id);
+
+		return redirect()->route('posts.index');
 	}
 
 	public function random()
@@ -108,7 +116,12 @@ class PostsController extends Controller {
 
 	public function comment($id)
 	{
-		return 'posts.comment: '.$id;
+		$post = \App\Post::find($id);
+		$comment = \App\Comment::create(\Input::all());
+
+		$post->comments()->save($comment);
+
+		return redirect()->route('posts.show', $post->id);
 	}
 
 }
