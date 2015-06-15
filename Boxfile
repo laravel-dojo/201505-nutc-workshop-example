@@ -32,6 +32,8 @@ web1:
     - storage/framework
     - storage/app
   nonpersistent_writable_dirs:
+    - storage/views
+    - storage/sessions
     - storage/cache
   log_watch:
     larvel[error]: 'storage/logs/laravel.log'

@@ -5,4 +5,6 @@
 web1:
   before_deploy:
     - "mkdir storage/framework/views"
+    - "mkdir storage/framework/sessions"
+    - "mkdir storage/framework/cache"
     - "php artisan db:seed --no-interaction --force"
